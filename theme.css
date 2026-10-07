@@ -1,0 +1,85 @@
+/* Theme Pack — VARSITY (id: varsity) · collection: vertical · family: Campus letterman
+   Applied verbatim from the Design Studio brief. Component code uses var(--tp-*) only. */
+
+/* ── Keyframes ─────────────────────────────────────────────────────────── */
+@keyframes tp-pop{0%{transform:scale(.88);opacity:0}62%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+@keyframes tp-up{from{transform:translateY(var(--tp-reveal-dist,16px));opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes tp-down{from{transform:translateY(-16px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes tp-sheet{from{transform:translateY(102%)}to{transform:translateY(0)}}
+@keyframes tp-fade{from{opacity:0}to{opacity:1}}
+@keyframes tp-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes tp-curtain{from{clip-path:inset(100% 0 0 0);transform:translateY(var(--tp-reveal-dist,16px))}to{clip-path:inset(0 0 0 0);transform:translateY(0)}}
+@keyframes tp-rise{from{clip-path:inset(0 0 100% 0);transform:translateY(var(--tp-reveal-dist,16px))}to{clip-path:inset(0 0 0 0);transform:translateY(0)}}
+@keyframes tp-blur-in{from{opacity:0;filter:blur(16px);transform:scale(1.05) translateY(var(--tp-reveal-dist,16px))}to{opacity:1;filter:blur(0);transform:scale(1) translateY(0)}}
+@keyframes tp-glitch{0%{opacity:0;transform:translate3d(-6px,0,0);clip-path:inset(40% 0 38% 0)}18%{opacity:1;transform:translate3d(5px,0,0);clip-path:inset(12% 0 62% 0)}36%{transform:translate3d(-3px,0,0);clip-path:inset(68% 0 6% 0)}54%{transform:translate3d(2px,0,0);clip-path:inset(0 0 0 0)}72%{transform:translate3d(-1px,0,0)}100%{opacity:1;transform:none;clip-path:inset(0 0 0 0)}}
+@keyframes tp-tape{from{opacity:0;transform:rotate(-9deg) translateY(var(--tp-reveal-dist,16px)) scale(.95)}to{opacity:1;transform:rotate(var(--tp-img-tilt,0deg)) translateY(0) scale(1)}}
+@keyframes tp-zoom{from{transform:scale(1.16)}to{transform:scale(1)}}
+@keyframes tp-bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes tp-shake{10%,90%{transform:translateX(-2px)}30%,70%{transform:translateX(3px)}50%{transform:translateX(-4px)}}
+@keyframes tp-pulse{0%,100%{opacity:1}50%{opacity:.42}}
+@keyframes tp-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+@keyframes tp-shimmer{from{background-position:-160% 0}to{background-position:260% 0}}
+@keyframes tp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes tp-spin{to{transform:rotate(360deg)}}
+@keyframes tp-blink{50%{opacity:0}}
+@keyframes tp-tilt{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@keyframes tp-drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(4%,-3%,0) scale(1.12)}100%{transform:translate3d(0,0,0) scale(1)}}
+
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}}
+
+/* ── VARSITY tokens ────────────────────────────────────────────────────── */
+[data-theme="varsity"]{
+  --tp-h:262;
+  --tp-fx:none;--tp-fx-size:auto;--tp-fx-anim:none;--tp-fx-op:0;--tp-fx-blend:normal;--tp-fx-tf:none;
+  --tp-3d:none;--tp-3d-anim:none;--tp-3d-web:none;
+  --tp-dur-slow:480ms;--tp-stagger:55ms;--tp-reveal:tp-pop;--tp-reveal-dist:20px;
+  --tp-img-r:12px;--tp-img-frame:2.5px solid #1c2447;--tp-img-sh:4px 4px 0 rgba(28,36,71,.3);
+  --tp-img-filter:saturate(1.1) contrast(1.05);--tp-img-overlay-op:0.1;--tp-img-blend:normal;
+  --tp-img-tilt:0deg;--tp-img-ar:4 / 3;
+  --tp-bg:#f3f1ea;--tp-canvas:#f3f1ea;--tp-surf:#fdfcf8;--tp-surf-2:#e5e1d4;
+  --tp-ink:#1c2447;--tp-mute:#5a6180;
+  --tp-acc:oklch(0.44 0.16 calc(var(--tp-h) + 0));
+  --tp-acc-2:oklch(0.78 0.14 calc(var(--tp-h) + 155));
+  --tp-acc-ink:#fdfcf8;--tp-line:#1c2447;
+  --tp-grad:linear-gradient(135deg, oklch(0.44 0.16 calc(var(--tp-h) + 0)), oklch(0.38 0.13 calc(var(--tp-h) + -20)));
+  --tp-r:14px;--tp-r-sm:9px;--tp-r-lg:20px;--tp-r-btn:99px;
+  --tp-sh:4px 4px 0 #1c2447;--tp-sh-sm:2px 2px 0 #1c2447;
+  --tp-bw:2.5px;
+  /* Cyrillic substitution — this deck is Russian and the pack's Bungee/Figtree ship no
+     Cyrillic at all (verified against the Google Fonts subsets), so headings would fall
+     back to a system face and the type would break into two voices. Unbounded and Rubik
+     carry the same loud-campus / friendly-geometric register with full Cyrillic coverage. */
+  --tp-font-display:'Unbounded', 'Bungee', system-ui;
+  --tp-font-body:'Rubik', 'Figtree', system-ui;
+  --tp-font-mono:'JetBrains Mono', monospace;
+  --tp-w-display:400;--tp-track-display:0.01em;--tp-case-display:uppercase;--tp-hero:58px;
+  --tp-dur:160ms;--tp-ease:cubic-bezier(.34,1.4,.64,1);--tp-press:0.95;
+  --tp-tex:none;--tp-blur:none;
+}
+
+/* ── Shared structural helpers ─────────────────────────────────────────── */
+.tp-web-stage{position:relative;isolation:isolate;overflow:hidden;animation:var(--tp-3d-web,none);transform-origin:50% 50%}
+.tp-web-stage>.tp-fx{inset:-20%}
+.tp-fx{position:absolute;inset:-40%;z-index:-1;pointer-events:none;background:var(--tp-fx);background-size:var(--tp-fx-size);opacity:var(--tp-fx-op);mix-blend-mode:var(--tp-fx-blend);transform:var(--tp-fx-tf);animation:var(--tp-fx-anim)}
+.tp-screen{position:relative;isolation:isolate;overflow:hidden}
+.tp-stage{transform:var(--tp-3d);animation:var(--tp-3d-anim);transform-style:preserve-3d}
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--tp-bg);
+  color:var(--tp-ink);
+  font-family:var(--tp-font-body);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:var(--tp-font-display);
+  font-weight:var(--tp-w-display);
+  letter-spacing:var(--tp-track-display);
+  text-transform:var(--tp-case-display);
+  line-height:1.02;
+  margin:0;
+}

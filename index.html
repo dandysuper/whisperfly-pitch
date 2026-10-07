@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="varsity" style="--tp-h: 262">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhisperFly — голос в текст · Питч для конкурса стартапов</title>
+<meta name="description" content="WhisperFly — бесплатная диктовка нажатием клавиши для macOS. Питч-презентация для конкурса стартапов.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Rubik:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="deck.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<div class="nav-progress" id="progress" aria-hidden="true"></div>
+
+<!-- ── Icon sprite ──────────────────────────────────────────────────────── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="g-stroke" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></g>
+  </defs>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><path d="M12 19v3"/><path d="M9 22h6"/>
+  </symbol>
+  <symbol id="i-speaker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/>
+  </symbol>
+  <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/>
+  </symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 2 4 14h7l-1 8 9-12h-7z"/>
+  </symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m12 3 1.9 5.6L20 10l-6.1 1.4L12 17l-1.9-5.6L4 10l6.1-1.4z"/><path d="M18 16.5 18.7 18.5 20.7 19.2 18.7 19.9 18 21.9 17.3 19.9 15.3 19.2 17.3 18.5z"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>
+  </symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/>
+  </symbol>
+  <symbol id="i-keyboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M7 13h10M8 16.5h8"/>
+  </symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 18.5a4.5 4.5 0 0 0 .6-8.96A6.5 6.5 0 0 0 5.9 9.4 4.5 4.5 0 0 0 6.5 18.5z"/>
+  </symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>
+  </symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3 5 6v6c0 4.4 3 8.2 7 9 4-.8 7-4.6 7-9V6z"/><path d="m9 12 2 2 4-4"/>
+  </symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2s5 3.2 5 9c0 3-1 5.2-2 6.4H9C8 16.2 7 14 7 11c0-5.8 5-9 5-9z"/><circle cx="12" cy="9" r="1.6"/><path d="M9 17.4 6 21M15 17.4 18 21"/>
+  </symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 20v-1.6a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20"/><circle cx="9" cy="7" r="3.4"/><path d="M18 20v-1.6a4 4 0 0 0-3-3.86"/>
+  </symbol>
+  <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m9 7-5 5 5 5"/><path d="m15 7 5 5-5 5"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12h16"/><path d="m14 6 6 6-6 6"/>
+  </symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m4 12.5 5.2 5.2L20 6.5"/>
+  </symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 6l12 12M18 6 6 18"/>
+  </symbol>
+  <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.2"/>
+  </symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.5 12.4 12.4 20.5a2 2 0 0 1-2.8 0L3.5 14.4a2 2 0 0 1-.6-1.4V4.5a2 2 0 0 1 2-2h8.5a2 2 0 0 1 1.4.6l5.7 5.7a2 2 0 0 1 0 2.6z"/><path d="M7.5 7.5h.01"/>
+  </symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 17.5 9.5 11l4 4L21 7.5"/><path d="M15 7.5h6v6"/>
+  </symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/><path d="m3 17.5 9 5 9-5"/>
+  </symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11.4V16c0 1.3 2.7 2.6 6 2.6s6-1.3 6-2.6v-4.6"/>
+  </symbol>
+  <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 13.5a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.4 1.4"/><path d="M14 10.5a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.4-1.4"/>
+  </symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 6.8v10.4"/><path d="M14.6 9.3a2.6 2.6 0 0 0-2.6-1.4h-.4a2.3 2.3 0 0 0 0 4.6h.8a2.3 2.3 0 0 1 0 4.6h-.4a2.6 2.6 0 0 1-2.6-1.4"/>
+  </symbol>
+  <symbol id="i-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3 4v5h5"/><path d="M12 8v4.3l3 1.8"/>
+  </symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m4 17 4.5-4.5L12 16l3-3 5 5"/>
+  </symbol>
+</svg>
+
+<div class="deck">
+  <div class="stage" id="stage">
+
+    <!-- ═══ 01 · Титул ═══════════════════════════════════════════════════ -->
+    <section class="slide slide--title active" data-num="01/13" aria-label="Титульный слайд">
+      <div class="slide-inner">
+        <div class="crest anim" style="--i:0">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="12" y="34" width="5.5" height="10" rx="2.75" fill="currentColor"/>
+            <rect x="21" y="28" width="5.5" height="16" rx="2.75" fill="currentColor"/>
+            <rect x="30" y="22" width="5.5" height="22" rx="2.75" fill="currentColor"/>
+            <rect x="39" y="27" width="5.5" height="17" rx="2.75" fill="currentColor"/>
+            <rect x="48" y="33" width="5.5" height="11" rx="2.75" fill="currentColor"/>
+            <path d="M14 20c9-6 22-9 36-7-6 3-12 7-17 12-5-4-12-6-19-5z" fill="currentColor" opacity=".92"/>
+          </svg>
+        </div>
+
+        <div class="brand anim" style="--i:1;--rv:tp-up">WHISPER<span class="fly">FLY</span></div>
+
+        <p class="tagline anim" style="--i:2;--rv:tp-up">
+          Диктовка нажатием клавиши для macOS. Голос&nbsp;— в текст: мгновенно,
+          в любом приложении и без единого рубля за подписку.
+        </p>
+
+        <div class="title-band anim" style="--i:3;--rv:tp-up">
+          <span class="badge badge--fill">Конкурс стартапов · 2026</span>
+          <span class="badge">macOS 14+</span>
+          <span class="badge">10 языков</span>
+          <span class="badge">Открытый код</span>
+          <span class="badge">0 ₽</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 02 · Проблема ════════════════════════════════════════════════ -->
+    <section class="slide" data-num="02/13" aria-label="Проблема">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Проблема</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Печатать — <span class="hl">в 4 раза медленнее</span>, чем говорить
+          </h2>
+          <p class="slide-sub anim" style="--i:2;--rv:tp-up">
+            Мы думаем со скоростью речи, но вводим текст со скоростью клавиатуры.
+            Разрыв между мыслью и набором съедает часы рабочего времени каждый день —
+            и почти все существующие решения просят за это ежемесячную подписку.
+          </p>
+        </div>
+
+        <div class="grid g-4">
+          <article class="card card--navy anim" style="--i:3;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-keyboard"/></svg></div>
+            <div class="stat">
+              <span class="stat-n">40</span>
+              <span class="stat-l">слов в минуту</span>
+            </div>
+            <p class="card-d">Средняя скорость набора на клавиатуре у офисного сотрудника.</p>
+          </article>
+
+          <article class="card card--accent anim" style="--i:4;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-mic"/></svg></div>
+            <div class="stat">
+              <span class="stat-n">150</span>
+              <span class="stat-l">слов в минуту</span>
+            </div>
+            <p class="card-d">Средняя скорость речи. Почти в четыре раза быстрее набора.</p>
+          </article>
+
+          <article class="card card--gold anim" style="--i:5;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-clock"/></svg></div>
+            <div class="stat">
+              <span class="stat-n">≈ 3 ч</span>
+              <span class="stat-l">в день</span>
+            </div>
+            <p class="card-d">Уходит у человека, работа которого — текст: письма, заметки, документы, код.</p>
+          </article>
+
+          <article class="card anim" style="--i:6;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-tag"/></svg></div>
+            <div class="stat">
+              <span class="stat-n">$15–30</span>
+              <span class="stat-l">в месяц</span>
+            </div>
+            <p class="card-d">Стоит подписка на существующие приложения для диктовки.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 03 · Решение ═════════════════════════════════════════════════ -->
+    <section class="slide" data-num="03/13" aria-label="Решение">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Решение</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Нажал. <span class="hl">Сказал.</span> Готово.
+          </h2>
+          <p class="slide-sub anim" style="--i:2;--rv:tp-up">
+            WhisperFly превращает речь в текст в любой программе macOS — по одному нажатию
+            ⌘⇧Space. Без подписки, без загрузки моделей и без требований к железу.
+          </p>
+        </div>
+
+        <div class="grid g-side">
+          <ol class="punch anim" style="--i:3;--rv:tp-up">
+            <li>
+              <span class="n">1</span>
+              <span><strong>Одной клавишей.</strong> Глобальное сочетание ⌘⇧Space запускает и
+              останавливает запись из любого приложения — переключаться не нужно.</span>
+            </li>
+            <li>
+              <span class="n">2</span>
+              <span><strong>Текст там, где курсор.</strong> Вставка через Accessibility API,
+              при отказе — надёжный откат на буфер обмена.</span>
+            </li>
+            <li>
+              <span class="n">3</span>
+              <span><strong>Ноль локальных моделей.</strong> Распознавание идёт в облаке:
+              приложению не нужен GPU и гигабайты загрузок.</span>
+            </li>
+            <li>
+              <span class="n">4</span>
+              <span><strong>Бесплатно.</strong> Оба движка распознавания работают на
+              бесплатных тарифах провайдеров.</span>
+            </li>
+          </ol>
+
+          <article class="card card--navy anim" style="--i:4;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-bolt"/></svg></div>
+            <div class="hero-fig">⌘⇧Space<small>одно сочетание на всё</small></div>
+            <p class="card-d">Нажать — сказать — отпустить. Результат появляется в поле ввода
+            за считанные секунды.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 04 · Как это работает ═══════════════════════════════════════ -->
+    <section class="slide" data-num="04/13" aria-label="Как это работает">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Как это работает</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Пять шагов за <span class="hl">секунды</span>
+          </h2>
+          <p class="slide-sub anim" style="--i:2;--rv:tp-up">
+            От нажатия клавиши до готового текста в поле ввода — один короткий конвейер.
+          </p>
+        </div>
+
+        <div class="pipe anim" style="--i:3;--rv:tp-up">
+          <div class="pipe-step">
+            <span class="pipe-n">01</span>
+            <span class="pipe-t">Запись</span>
+            <p class="pipe-d">AVFoundation пишет микрофон. ScreenCaptureKit — всё, что звучит на Mac.</p>
+          </div>
+          <div class="pipe-step">
+            <span class="pipe-n">02</span>
+            <span class="pipe-t">Конвертация</span>
+            <p class="pipe-d">Аудио приводится к WAV 16 кГц — формату, который понимает движок.</p>
+          </div>
+          <div class="pipe-step">
+            <span class="pipe-n">03</span>
+            <span class="pipe-t">Распознавание</span>
+            <p class="pipe-d">Groq Whisper Large V3 или Google Gemini 2.5 Flash. Более 100 языков.</p>
+          </div>
+          <div class="pipe-step">
+            <span class="pipe-n">04</span>
+            <span class="pipe-t">Обработка</span>
+            <p class="pipe-d">Необязательная AI-переформулировка: грамматика, пунктуация, перевод.</p>
+          </div>
+          <div class="pipe-step">
+            <span class="pipe-n">05</span>
+            <span class="pipe-t">Вставка</span>
+            <p class="pipe-d">Готовый текст появляется прямо в активном поле ввода.</p>
+          </div>
+        </div>
+
+        <p class="note anim" style="--i:4;--rv:tp-up">
+          Временные аудиофайлы удаляются сразу после распознавания. Результат попадает
+          в историю, его можно скопировать или озвучить системным голосом.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ 05 · Возможности ═════════════════════════════════════════════ -->
+    <section class="slide" data-num="05/13" aria-label="Возможности">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Возможности</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Всё, что нужно для <span class="hl">голосового ввода</span>
+          </h2>
+        </div>
+
+        <div class="grid g-3 grid--compact">
+          <article class="card anim" style="--i:2;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-speaker"/></svg></div>
+            <h3 class="card-t">Два источника звука</h3>
+            <p class="card-d">Микрофон или системный звук — транскрибируйте созвоны и видео прямо с дорожки Mac.</p>
+          </article>
+
+          <article class="card anim" style="--i:3;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-cloud"/></svg></div>
+            <h3 class="card-t">Два бесплатных движка</h3>
+            <p class="card-d">Groq Whisper Large V3 и Google Gemini 2.5 Flash через OpenRouter — оба на бесплатном тарифе.</p>
+          </article>
+
+          <article class="card anim" style="--i:4;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-file"/></svg></div>
+            <h3 class="card-t">Транскрипция файлов</h3>
+            <p class="card-d">MP3, M4A, WAV, FLAC, MP4, MOV — результат сразу уходит в буфер обмена.</p>
+          </article>
+
+          <article class="card anim" style="--i:5;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-spark"/></svg></div>
+            <h3 class="card-t">AI-переформулировка</h3>
+            <p class="card-d">Чистка грамматики, расстановка пунктуации или перевод на английский — одним переключателем.</p>
+          </article>
+
+          <article class="card anim" style="--i:6;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-history"/></svg></div>
+            <h3 class="card-t">История транскрипций</h3>
+            <p class="card-d">Последние 100 результатов: просмотр, копирование и повторное открытие в отдельном окне.</p>
+          </article>
+
+          <article class="card anim" style="--i:7;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-globe"/></svg></div>
+            <h3 class="card-t">10 языков интерфейса</h3>
+            <p class="card-d">Русский, английский, немецкий, французский, испанский, японский, китайский, корейский, итальянский, хинди.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 06 · Технологии ══════════════════════════════════════════════ -->
+    <section class="slide" data-num="06/13" aria-label="Технологии">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Технологии</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Нативный стек, <span class="hl">без компромиссов</span>
+          </h2>
+        </div>
+
+        <div class="chips anim" style="--i:2;--rv:tp-up">
+          <span class="chip chip--acc">Swift 6</span>
+          <span class="chip">SwiftUI</span>
+          <span class="chip">AppKit</span>
+          <span class="chip">ScreenCaptureKit</span>
+          <span class="chip">AVFoundation</span>
+          <span class="chip">Carbon</span>
+          <span class="chip chip--gold">Groq API</span>
+          <span class="chip chip--gold">OpenRouter</span>
+        </div>
+
+        <div class="grid g-side">
+          <article class="card anim" style="--i:3;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-layers"/></svg></div>
+            <h3 class="card-t">Пять модулей</h3>
+            <ul class="layers">
+              <li><b>App</b><span>Конвейер, плавающая панель, HUD-окна</span></li>
+              <li><b>Services</b><span>Запись, конвертация, движки, хоткей, вставка</span></li>
+              <li><b>Core</b><span>Протоколы и статусы конвейера</span></li>
+              <li><b>Models</b><span>Настройки и хранилище истории</span></li>
+              <li><b>Views</b><span>SwiftUI-интерфейс и строка меню</span></li>
+            </ul>
+          </article>
+
+          <div class="stats">
+            <article class="card card--navy anim" style="--i:4;--rv:tp-up">
+              <div class="stat">
+                <span class="stat-n">3 000+</span>
+                <span class="stat-l">строк Swift</span>
+              </div>
+            </article>
+            <article class="card card--accent anim" style="--i:5;--rv:tp-up">
+              <div class="stat">
+                <span class="stat-n">10</span>
+                <span class="stat-l">локализаций</span>
+              </div>
+            </article>
+            <article class="card card--gold anim" style="--i:6;--rv:tp-up">
+              <div class="stat">
+                <span class="stat-n">3</span>
+                <span class="stat-l">сборки DMG</span>
+              </div>
+            </article>
+            <article class="card anim" style="--i:7;--rv:tp-up">
+              <div class="stat">
+                <span class="stat-n">0 ГБ</span>
+                <span class="stat-l">загрузок моделей</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 07 · Рынок ══════════════════════════════════════════════════ -->
+    <section class="slide" data-num="07/13" aria-label="Рынок">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Рынок</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Растущий рынок <span class="hl">голосовых интерфейсов</span>
+          </h2>
+        </div>
+
+        <div class="grid g-3">
+          <article class="card card--navy anim" style="--i:2;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-globe"/></svg></div>
+            <div class="stat">
+              <span class="stat-n">$5,2 млрд</span>
+              <span class="stat-l">TAM · весь рынок</span>
+            </div>
+            <p class="card-d">Мировой рынок распознавания речи и ПО для диктовки.</p>
+          </article>
+
+          <article class="card card--accent anim" style="--i:3;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-target"/></svg></div>
+            <div class="stat">
+              <span class="stat-n">$780 млн</span>
+              <span class="stat-l">SAM · наш сегмент</span>
+            </div>
+            <p class="card-d">Пользователи macOS, чья работа — постоянно вводить текст.</p>
+          </article>
+
+          <article class="card card--gold anim" style="--i:4;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-coin"/></svg></div>
+            <div class="stat">
+              <span class="stat-n">$12 млн</span>
+              <span class="stat-l">SOM · цель за 3 года</span>
+            </div>
+            <p class="card-d">Русскоязычный сегмент и малый бизнес — рынок, который мы можем занять.</p>
+          </article>
+        </div>
+
+        <div class="chips anim" style="--i:5;--rv:tp-up">
+          <span class="chip">≈ 20 % в год — рост рынка</span>
+          <span class="chip">100+ млн — активных Mac</span>
+          <span class="chip">250 млн — носителей русского</span>
+          <span class="chip">0 ₽ — порог входа</span>
+        </div>
+
+        <p class="note anim" style="--i:6;--rv:tp-up">
+          Оценка построена на публичных данных о рынке ASR и голосового ПО; SOM — целевая
+          доля русскоязычного направления за три года.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ 08 · Бизнес-модель ══════════════════════════════════════════ -->
+    <section class="slide" data-num="08/13" aria-label="Бизнес-модель">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Бизнес-модель</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Бесплатное ядро. <span class="hl">Платная скорость.</span>
+          </h2>
+        </div>
+
+        <div class="grid g-3">
+          <article class="card anim" style="--i:2;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-code"/></svg></div>
+            <h3 class="card-t">Free · 0 ₽</h3>
+            <p class="card-d">Всё ядро без ограничений: два движка, транскрипция файлов,
+            история, 10 языков. Исходный код открыт.</p>
+          </article>
+
+          <article class="card card--accent anim" style="--i:3;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-bolt"/></svg></div>
+            <h3 class="card-t">Pro · 690 ₽/мес</h3>
+            <p class="card-d">Приоритетные модели, безлимитный объём, пользовательский словарь,
+            экспорт и ранний доступ к новым функциям.</p>
+          </article>
+
+          <article class="card anim" style="--i:4;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-users"/></svg></div>
+            <h3 class="card-t">Team · от 490 ₽</h3>
+            <p class="card-d">За сотрудника в месяц: админ-панель, единый вход, общие словари
+            и развёртывание внутри компании.</p>
+          </article>
+        </div>
+
+        <div class="chips anim" style="--i:5;--rv:tp-up">
+          <span class="chip chip--acc">Маржа > 80 %</span>
+          <span class="chip">Себестоимость распознавания — центы в месяц</span>
+          <span class="chip">Привлечение через открытый код</span>
+          <span class="chip">Цель LTV/CAC > 3×</span>
+        </div>
+
+        <p class="note anim" style="--i:6;--rv:tp-up">
+          Монетизация — план на 2026 год. Бесплатное ядро и открытый исходный код остаются
+          основой продукта: они и есть канал привлечения.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ 09 · Конкуренты ═════════════════════════════════════════════ -->
+    <section class="slide" data-num="09/13" aria-label="Конкурентная среда">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Конкурентная среда</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Бесплатно — и с <span class="hl">открытым кодом</span>
+          </h2>
+        </div>
+
+        <table class="tbl anim" style="--i:2;--rv:tp-up">
+          <thead>
+            <tr>
+              <th>Продукт</th>
+              <th>Цена</th>
+              <th>Системный звук</th>
+              <th>Файлы</th>
+              <th>Открытый код</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-us">WhisperFly</td>
+              <td class="col-us">0 ₽</td>
+              <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+              <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+              <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+            </tr>
+            <tr>
+              <td>Superwhisper</td>
+              <td>от $8,99/мес</td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              <td><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+            </tr>
+            <tr>
+              <td>MacWhisper</td>
+              <td>от €59</td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              <td><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+            </tr>
+            <tr>
+              <td>Wispr Flow</td>
+              <td>от $12/мес</td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+            </tr>
+            <tr>
+              <td>Apple «Диктовка»</td>
+              <td>0 ₽</td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="note anim" style="--i:3;--rv:tp-up">
+          Публичные тарифы и возможности продуктов на начало 2026 года. WhisperFly сочетает
+          то, что конкуренты предлагают только по отдельности: нулевую цену, системный звук
+          и открытый исходный код.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ 10 · Трекшн ═════════════════════════════════════════════════ -->
+    <section class="slide" data-num="10/13" aria-label="Трекшн">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Трекшн</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Готовый продукт, <span class="hl">не прототип</span>
+          </h2>
+        </div>
+
+        <div class="grid g-4">
+          <article class="card card--navy anim" style="--i:2;--rv:tp-up">
+            <div class="stat">
+              <span class="stat-n">2.0</span>
+              <span class="stat-l">текущая версия</span>
+            </div>
+          </article>
+          <article class="card card--accent anim" style="--i:3;--rv:tp-up">
+            <div class="stat">
+              <span class="stat-n">3</span>
+              <span class="stat-l">сборки: Apple Silicon, Intel, универсальная</span>
+            </div>
+          </article>
+          <article class="card card--gold anim" style="--i:4;--rv:tp-up">
+            <div class="stat">
+              <span class="stat-n">10</span>
+              <span class="stat-l">языков интерфейса</span>
+            </div>
+          </article>
+          <article class="card anim" style="--i:5;--rv:tp-up">
+            <div class="stat">
+              <span class="stat-n">32</span>
+              <span class="stat-l">коммита в основной ветке</span>
+            </div>
+          </article>
+        </div>
+
+        <article class="card card--sunken anim" style="--i:6;--rv:tp-up">
+          <ul class="facts facts--2">
+            <li>
+              <span class="tick"><svg><use href="#i-check"/></svg></span>
+              <span><strong>Установка одной командой</strong> через Homebrew или готовый DMG.</span>
+            </li>
+            <li>
+              <span class="tick"><svg><use href="#i-check"/></svg></span>
+              <span><strong>Совместимость</strong> с macOS 14 (Sonoma) вплоть до macOS 26 (Tahoe).</span>
+            </li>
+            <li>
+              <span class="tick"><svg><use href="#i-check"/></svg></span>
+              <span><strong>Три проблемы macOS 26 решены:</strong> крэш панели, ложные отказы прав, тихая запись.</span>
+            </li>
+            <li>
+              <span class="tick"><svg><use href="#i-check"/></svg></span>
+              <span><strong>Открытый исходный код</strong> на GitHub — продукт можно проверить и собрать самому.</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ 11 · Роадмап ════════════════════════════════════════════════ -->
+    <section class="slide" data-num="11/13" aria-label="Роадмап">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Роадмап</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            От приложения к <span class="hl">платформе</span>
+          </h2>
+        </div>
+
+        <div class="road">
+          <div class="road-col road-col--now anim" style="--i:2;--rv:tp-up">
+            <span class="road-q">Q1 2026 · сейчас</span>
+            <ul class="road-items">
+              <li>Релиз 2.0: системный звук и файлы</li>
+              <li>История транскрипций</li>
+              <li>Совместимость с macOS 26</li>
+              <li>Сборки и Homebrew</li>
+            </ul>
+          </div>
+          <div class="road-col road-col--next anim" style="--i:3;--rv:tp-up">
+            <span class="road-q">Q2 2026</span>
+            <ul class="road-items">
+              <li>WhisperFly Pro и подписка</li>
+              <li>Пользовательский словарь</li>
+              <li>Оплата и лицензирование</li>
+              <li>Усиление команды: GTM</li>
+            </ul>
+          </div>
+          <div class="road-col anim" style="--i:4;--rv:tp-up">
+            <span class="road-q">Q3 2026</span>
+            <ul class="road-items">
+              <li>Потоковая транскрипция</li>
+              <li>Компаньон для iOS</li>
+              <li>Версия для Windows</li>
+              <li>Публичный API</li>
+            </ul>
+          </div>
+          <div class="road-col anim" style="--i:5;--rv:tp-up">
+            <span class="road-q">Q4 2026</span>
+            <ul class="road-items">
+              <li>Админ-панель и единый вход</li>
+              <li>Общие словари компании</li>
+              <li>Развёртывание on-prem</li>
+              <li>Сертификация безопасности</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 12 · Команда ════════════════════════════════════════════════ -->
+    <section class="slide" data-num="12/13" aria-label="Команда">
+      <div class="slide-inner">
+        <div class="head">
+          <span class="kicker anim" style="--i:0">Команда</span>
+          <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+            Один разработчик. <span class="hl">Весь стек.</span>
+          </h2>
+        </div>
+
+        <div class="crew">
+          <article class="card crew-card anim" style="--i:2;--rv:tp-up">
+            <div class="avatar">DS</div>
+            <span class="crew-name">dandysuper</span>
+            <span class="crew-role">Основатель · разработка · продукт</span>
+            <p class="card-d">Полный цикл: архитектура на Swift, интерфейс, дизайн, релизы и дистрибуция.</p>
+          </article>
+
+          <article class="card crew-card card--gold anim" style="--i:3;--rv:tp-up">
+            <div class="avatar"><svg style="width:3cqw;height:3cqw"><use href="#i-code"/></svg></div>
+            <span class="crew-name">Открытый код</span>
+            <span class="crew-role">Сообщество</span>
+            <p class="card-d">Репозиторий на GitHub: код открыт, вклад и обратная связь приветствуются.</p>
+          </article>
+
+          <article class="card crew-card anim" style="--i:4;--rv:tp-up">
+            <div class="avatar">HK</div>
+            <span class="crew-name">hukopo</span>
+            <span class="crew-role">Автор основы</span>
+            <p class="card-d">Автор проекта qwenwishper, из которого вырос WhisperFly.</p>
+          </article>
+        </div>
+
+        <p class="note anim" style="--i:5;--rv:tp-up">
+          В планах — усиление команды: продуктовый маркетинг и продажи во втором квартале 2026 года.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ 13 · Призыв ═════════════════════════════════════════════════ -->
+    <section class="slide slide--close" data-num="13/13" aria-label="Что мы ищем">
+      <div class="slide-inner">
+        <span class="kicker anim" style="--i:0">Что мы ищем</span>
+        <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
+          Помогите нам <span class="hl">взлететь</span>
+        </h2>
+
+        <div class="ask">
+          <article class="card anim" style="--i:2;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-trend"/></svg></div>
+            <h3 class="card-t">Инвестиции</h3>
+            <p class="card-d">Посевной раунд для запуска Pro-версии и найма специалиста по выходу на рынок.</p>
+          </article>
+          <article class="card anim" style="--i:3;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-users"/></svg></div>
+            <h3 class="card-t">Менторы</h3>
+            <p class="card-d">Опыт вывода инструментов для продуктивности на массовый рынок и в B2B.</p>
+          </article>
+          <article class="card anim" style="--i:4;--rv:tp-up">
+            <div class="card-ico"><svg><use href="#i-link"/></svg></div>
+            <h3 class="card-t">Партнёры</h3>
+            <p class="card-d">Дистрибуция через сообщества разработчиков, IT-компании и вузы.</p>
+          </article>
+        </div>
+
+        <div class="cta-row anim" style="--i:5;--rv:tp-up">
+          <a class="cta" href="https://github.com/dandysuper/WhisperFly/releases/latest">
+            <svg><use href="#i-download"/></svg>Скачать бесплатно
+          </a>
+          <a class="cta cta--ghost" href="https://github.com/dandysuper/WhisperFly">
+            <svg><use href="#i-code"/></svg>GitHub
+          </a>
+          <span class="note">Открытый исходный код · macOS 14+ · 10 языков</span>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.stage -->
+
+  <nav class="deck-nav" aria-label="Навигация по слайдам">
+    <button class="nav-btn" id="prev" type="button">Назад</button>
+    <span class="nav-count" id="counter">01 / 13</span>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn" id="next" type="button">Вперёд</button>
+    <button class="nav-btn" id="print" type="button">PDF</button>
+  </nav>
+</div><!-- /.deck -->
+
+<script src="app.js"></script>
+</body>
+</html>

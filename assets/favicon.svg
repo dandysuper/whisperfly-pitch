@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#1c2447"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#e8b73f" stroke-width="2.5"/>
+  <!-- waveform bars, lifting left to right -->
+  <rect x="12" y="34" width="5.5" height="10" rx="2.75" fill="#fdfcf8"/>
+  <rect x="21" y="28" width="5.5" height="16" rx="2.75" fill="#fdfcf8"/>
+  <rect x="30" y="22" width="5.5" height="22" rx="2.75" fill="#e8b73f"/>
+  <rect x="39" y="27" width="5.5" height="17" rx="2.75" fill="#fdfcf8"/>
+  <rect x="48" y="33" width="5.5" height="11" rx="2.75" fill="#fdfcf8"/>
+  <!-- wing swoosh -->
+  <path d="M14 20c9-6 22-9 36-7-6 3-12 7-17 12-5-4-12-6-19-5z" fill="#fdfcf8" opacity="0.92"/>
+</svg>
