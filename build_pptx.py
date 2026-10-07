@@ -314,12 +314,12 @@ def slide_title(prs):
 
     label(slide, Inches(2.4), Inches(4.32), SLIDE_W - Inches(4.8), Inches(1.0),
           "Диктовка нажатием клавиши для macOS. Голос — в текст: мгновенно, "
-          "в любом приложении и без единого рубля за подписку.",
+          "в любом приложении и без единого тенге за подписку.",
           size=13.5, color=MUTE, align=PP_ALIGN.CENTER, line_spacing=1.3)
 
     badge_row(slide, Inches(5.62), [
         "Конкурс стартапов · 2026", "macOS 14+", "10 языков",
-        "Открытый код", "0 ₽",
+        "Открытый код", "0 ₸",
     ])
     return slide
 
@@ -592,7 +592,7 @@ def slide_market(prs):
         "≈ 20 % в год — рост рынка",
         "100+ млн — активных Mac",
         "250 млн — носителей русского",
-        "0 ₽ — порог входа",
+        "0 ₸ — порог входа",
     ])
 
     label(slide, MARGIN, Inches(6.28), CONTENT_W, Inches(0.6),
@@ -617,11 +617,11 @@ def slide_business(prs):
     width, xs = columns(3)
     top = int(BODY_TOP + Inches(0.10))
     plans = [
-        ("Free · 0 ₽", "Всё ядро без ограничений: два движка, транскрипция файлов, "
+        ("Free · 0 ₸", "Всё ядро без ограничений: два движка, транскрипция файлов, "
                        "история, 10 языков. Исходный код открыт.", SURF, INK, MUTE),
-        ("Pro · 690 ₽/мес", "Приоритетные модели, безлимитный объём, пользовательский "
+        ("Pro · 3 990 ₸/мес", "Приоритетные модели, безлимитный объём, пользовательский "
                             "словарь, экспорт и ранний доступ к новым функциям.", ACC, ACC_INK, ACC_INK),
-        ("Team · от 490 ₽", "За сотрудника в месяц: админ-панель, единый вход, общие "
+        ("Team · от 2 990 ₸", "За сотрудника в месяц: админ-панель, единый вход, общие "
                             "словари и развёртывание внутри компании.", SURF, INK, MUTE),
     ]
     for i, (head, body, fill, head_fg, body_fg) in enumerate(plans):
@@ -663,11 +663,11 @@ def slide_competition(prs):
 
     headers = ["Продукт", "Цена", "Системный звук", "Файлы", "Открытый код"]
     rows = [
-        ("WhisperFly", "0 ₽", True, True, True),
+        ("WhisperFly", "0 ₸", True, True, True),
         ("Superwhisper", "от $8,99/мес", False, True, False),
         ("MacWhisper", "от €59", False, True, False),
         ("Wispr Flow", "от $12/мес", False, False, False),
-        ("Apple «Диктовка»", "0 ₽", False, False, False),
+        ("Apple «Диктовка»", "0 ₸", False, False, False),
     ]
 
     total = CONTENT_W
