@@ -61,10 +61,17 @@
   function prev() { go(current - 1); }
 
   /* Hash sync: deep-linkable slides that survive a reload or a shared URL.
-     replaceState does not fire hashchange, so this cannot loop. */
+     replaceState does not fire hashchange, so this cannot loop.
+     Some browsers refuse history writes on a file:// document, so the call is
+     guarded: opening index.html by double-click still navigates, it just does
+     not rewrite the address bar. */
   function writeHash(n) {
     if (!history.replaceState) return;
-    history.replaceState(null, '', '#' + n);
+    try {
+      history.replaceState(null, '', '#' + n);
+    } catch (error) {
+      /* file:// origin — navigation works, the address bar simply stays put. */
+    }
   }
 
   function readHash() {
