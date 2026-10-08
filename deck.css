@@ -350,16 +350,15 @@ body{
 /* ── Title slide ───────────────────────────────────────────────────────── */
 .slide--title .slide-inner{align-items:center;justify-content:center;text-align:center;gap:1.45cqw;padding-top:4.2cqw}
 
-.logo{
-  width:9.4cqw;height:9.4cqw;
-  border:var(--tp-bw) solid var(--tp-line);
-  border-radius:var(--tp-r-lg);
-  box-shadow:var(--tp-sh);
-  overflow:hidden;
-  background:var(--tp-ink);
+/* The app icon ships as a macOS squircle with its own alpha channel, so it needs no
+   frame — only the theme's hard offset shadow, written as a filter so it follows the
+   artwork's outline instead of a bounding box. */
+.logo-icon{
+  width:11cqw;height:11cqw;
   flex:0 0 auto;
+  filter:drop-shadow(3px 4px 0 rgba(28,36,71,.28));
 }
-.logo img{width:100%;height:100%;display:block}
+.logo-icon img{width:100%;height:100%;display:block}
 
 .brand{
   font-family:var(--tp-font-display);

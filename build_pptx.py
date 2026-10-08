@@ -78,6 +78,8 @@ MARGIN = Inches(0.62)
 CONTENT_W = SLIDE_W - MARGIN * 2
 BORDER = Pt(2.25)
 
+APP_ICON = "assets/appicon.png"   # the app icon, shared with the web deck
+
 # ── Shape / text helpers ─────────────────────────────────────────────────────
 
 
@@ -349,28 +351,12 @@ def slide_title(prs):
     spine(slide)
     slide_number(slide, "01/09")
 
-    # logo: the favicon rebuilt from shapes — navy tile, gold ring, waveform bars
-    logo_x, logo_y, logo_s = Inches(5.72), Inches(0.52), Inches(1.72)
-    box(slide, logo_x, logo_y, logo_s, logo_s, fill=INK, line=INK,
-        shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.22)
-
-    ring = box(slide, logo_x + Inches(0.20), logo_y + Inches(0.20),
-               logo_s - Inches(0.40), logo_s - Inches(0.40),
-               fill=None, line=ACC2, shape=MSO_SHAPE.OVAL, line_w=Pt(2))
-    ring.shadow.inherit = False
-
-    bar_w = Inches(0.135)
-    bar_gap = Inches(0.052)
-    bars_w = bar_w * 5 + bar_gap * 4
-    bar_x = logo_x + (logo_s - bars_w) / 2
-    centre_y = logo_y + logo_s / 2
-    heights = [0.30, 0.50, 0.66, 0.52, 0.34]
-    for i, h_in in enumerate(heights):
-        h = Inches(h_in)
-        bar = box(slide, bar_x + (bar_w + bar_gap) * i, centre_y - h / 2,
-                  bar_w, h, fill=ACC2 if i == 2 else ACC_INK, line=None,
-                  shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.5)
-        bar.shadow.inherit = False
+    # logo: the real app icon — the same PNG the web deck uses, so the two
+    # versions of the deck cannot drift apart. The icon already carries its own
+    # squircle and transparency, so it needs no frame.
+    logo_s = Inches(1.80)
+    slide.shapes.add_picture(APP_ICON, int((SLIDE_W - logo_s) / 2),
+                             Inches(0.46), logo_s, logo_s)
 
     label(slide, MARGIN, Inches(2.52), CONTENT_W, Inches(1.1),
           [("WHISPER", {}), ("FLY", {"color": ACC})],
@@ -401,7 +387,8 @@ def slide_title(prs):
               Inches(0.44), value, size=9.5, bold=True, line_spacing=1.24)
 
     badge_row(slide, Inches(5.92), [
-        "Защита проекта · 2026", "macOS 14+", "11 языков", "Открытый код", "0 ₸",
+        "PIZZA PITCH · SKO Hub", "16 октября 2026 · Петропавловск", "Готовый MVP",
+        "macOS 14+", "11 языков", "0 ₸",
     ])
     return slide
 
@@ -461,8 +448,8 @@ def slide_intro(prs):
          "Микрофон, системный звук и готовые аудио- и видеофайлы."),
         ("Снять языковой барьер.",
          "Интерфейс на 11 языках, включая казахский; распознавание — более 100 языков."),
-        ("Удержать нулевую цену.",
-         "Бесплатное ядро и открытый код как основа продукта, а не как акция."),
+        ("Вывести на рынок.",
+         "Лендинг, первые 1 000 пользователей и грант GitHub на AI-модели."),
     ]
     y = Inches(2.86)
     for i, (head, tail) in enumerate(tasks):
@@ -579,10 +566,10 @@ def slide_uniqueness(prs):
 
 
 EFFECT_STEPS = [
-    ("10 000", "ПОЛЬЗОВАТЕЛЕЙ К КОНЦУ ГОДА"),
+    ("5 000", "ПОЛЬЗОВАТЕЛЕЙ ЗА ГОД"),
     ("40 мин", "ЭКОНОМИИ В ДЕНЬ НА ЧЕЛОВЕКА"),
     ("220", "РАБОЧИХ ДНЕЙ"),
-    ("≈ 1,5 млн", "ЧЕЛОВЕКО-ЧАСОВ В ГОД"),
+    ("≈ 0,7 млн", "ЧЕЛОВЕКО-ЧАСОВ В ГОД"),
 ]
 
 
@@ -617,7 +604,7 @@ def slide_efficiency(prs):
             ("Экспортный потенциал.", "Продукт для глобального macOS-рынка, "
                                       "созданный в регионе."),
             ("Рабочие места.", "План найма: продуктовый маркетинг, продажи "
-                               "и поддержка в 2026 году."),
+                               "и поддержка в 2027 году."),
         ]),
     ]
 
@@ -663,7 +650,7 @@ def slide_efficiency(prs):
 
     label(slide, MARGIN + Inches(0.26), band_y + Inches(1.32),
           CONTENT_W - Inches(0.52), Inches(0.46),
-          "Это эквивалент примерно 800 полных ставок в год — время, которое регион "
+          "Это эквивалент примерно 400 полных ставок в год — время, которое регион "
           "получает без единого тенге бюджетных затрат.",
           size=8.5, color=MUTE, line_spacing=1.3)
     return slide
@@ -673,31 +660,31 @@ def slide_efficiency(prs):
 
 
 ROADMAP = [
-    ("Q4 2025", "готово", ACC, [
-        "Релиз 2.0: системный звук",
-        "Транскрипция файлов",
-        "История транскрипций",
-        "11 языков интерфейса",
+    ("Q4 2026", "готово", ACC, [
+        "Релиз 2.0 выпущен",
+        "Системный звук и файлы",
+        "История и 11 языков",
+        "Сборки: ARM, Intel, универсальная",
     ]),
-    ("Q1 2026", "в работе", ACC, [
-        "Пилот: 1 000 установок",
-        "Метрики и обратная связь",
-        "Подготовка Pro-версии",
-        "Стабилизация macOS 26",
+    ("Q1 2027", "в работе", ACC, [
+        "Лендинг продукта",
+        "Заявка на грант GitHub",
+        "Первые 1 000 установок",
+        "Обратная связь и метрики",
     ]),
-    ("Q2 2026", None, SURF2, [
+    ("Q2 2027", None, SURF2, [
         "WhisperFly Pro",
         "Оплата и лицензии",
         "Свой словарь",
         "Найм: маркетинг",
     ]),
-    ("Q3 2026", None, SURF2, [
+    ("Q3 2027", None, SURF2, [
         "Потоковая запись",
         "iOS-компаньон",
         "Версия для Windows",
         "Публичный API",
     ]),
-    ("Q4 2026", None, SURF2, [
+    ("Q4 2027", None, SURF2, [
         "Админ-панель и SSO",
         "Общие словари",
         "Развёртывание on-prem",
@@ -712,7 +699,7 @@ def slide_roadmap(prs):
     slide_number(slide, "05/09")
     kicker(slide, "План реализации")
     title(slide, [("От продукта к ", {}), ("платформе", {"color": ACC})])
-    subtitle(slide, "Пять этапов на 15 месяцев. Первый уже закрыт, остальные ложатся "
+    subtitle(slide, "Пять этапов на 12 месяцев. Первый уже закрыт, остальные опираются "
                     "на работающий продукт, а не на прототип.", y=Inches(1.34))
 
     width, xs = columns(5)
@@ -748,8 +735,8 @@ def slide_roadmap(prs):
                                     "за серверы не нужно."),
         ("Один разработчик, весь стек.", "Дизайн, код, сборки и релизы — "
                                          "в одних руках."),
-        ("Бюджет — только на вывод на рынок.", "Разработка ядра оплачена временем "
-                                               "основателя."),
+        ("Финансирование под контролем.", "Грант GitHub покрывает смету — "
+                                          "инвестиции не нужны."),
     ], columns_count=4, height=Inches(1.72), item_step=Inches(0.0))
     return slide
 
@@ -768,10 +755,10 @@ def slide_results(prs):
     top = Inches(1.62)
     height = Inches(2.20)
     stats = [
-        ("10 000", "установок за 12 месяцев", INK, ACC_INK),
-        ("500", "платящих пользователей Pro", ACC, ACC_INK),
-        ("3", "корпоративных внедрения", ACC2, INK),
-        ("1,5 млн", "сэкономленных человеко-часов в год", SURF, INK),
+        ("5 000", "установок за 12 месяцев", INK, ACC_INK),
+        ("300", "платящих пользователей Pro", ACC, ACC_INK),
+        ("$10 000", "грант GitHub для стартапов", ACC2, INK),
+        ("0,7 млн", "сэкономленных человеко-часов в год", SURF, INK),
     ]
     for i, (number, caption, fill, fg) in enumerate(stats):
         card(slide, xs[i], top, width, height, fill=fill)
@@ -780,27 +767,26 @@ def slide_results(prs):
                    number_color=fg, caption_color=fg, number_size=24)
 
     strip(slide, Inches(4.06), "Как мы оцениваем успех проекта", [
-        ("Охват.", "Не менее 10 000 активных установок за 12 месяцев и не менее "
+        ("Охват.", "Не менее 5 000 активных установок за 12 месяцев и не менее "
                    "1 000 в первом квартале."),
         ("Конверсия.", "Переход Free → Pro не ниже 5 % — при сохранении полностью "
                        "бесплатного ядра."),
         ("Удержание.", "Не менее 35 % пользователей возвращаются к продукту "
                        "на 30-й день после установки."),
-        ("Внедрения.", "Три организации региона — вуз, IT-компания или госструктура — "
-                       "используют WhisperFly в ежедневной работе."),
+        ("Финансирование.", "Грант GitHub для стартапов получен и покрывает смету "
+                            "на 6 месяцев — без внешних инвестиций."),
     ], columns_count=2, height=Inches(2.32), item_step=Inches(0.66))
     return slide
 # ── 07 · Финансовая часть ────────────────────────────────────────────────────
 
 
 BUDGET = [
-    ("Оплата труда основателя", "200 000 ₸ × 12 мес", "2 400 000 ₸"),
-    ("Маркетинг и вывод продукта на рынок", "", "600 000 ₸"),
-    ("Тестовое оборудование и устройства", "", "500 000 ₸"),
-    ("Облачные API распознавания и AI-обработки", "", "360 000 ₸"),
-    ("Юридические и бухгалтерские услуги", "", "300 000 ₸"),
-    ("Сертификаты и подпись приложения Apple", "", "54 000 ₸"),
-    ("Резерв на непредвиденные расходы", "", "286 000 ₸"),
+    ("Оплата труда основателя", "200 000 ₸ × 6 мес", "1 200 000 ₸"),
+    ("AI-модели и облачные API", "$1 000 · уже оплачено", "530 000 ₸"),
+    ("Продвижение лендинга и первые установки", "", "250 000 ₸"),
+    ("Домен, хостинг и аналитика лендинга", "", "60 000 ₸"),
+    ("Apple Developer Program", "$99 в год", "54 000 ₸"),
+    ("Резерв на непредвиденные расходы", "", "106 000 ₸"),
 ]
 
 
@@ -809,7 +795,7 @@ def slide_finance(prs):
     spine(slide)
     slide_number(slide, "07/09")
     kicker(slide, "Финансовая часть")
-    title(slide, [("Смета на ", {}), ("12 месяцев", {"color": ACC})])
+    title(slide, [("Что нужно и ", {}), ("откуда", {"color": ACC})])
 
     left_w = int(CONTENT_W * 0.60)
     col_a = int(left_w * 0.62)
@@ -882,10 +868,10 @@ def slide_finance(prs):
                     shape=MSO_SHAPE.RECTANGLE)
     row_total.shadow.inherit = False
     label(slide, MARGIN + Inches(0.16), total_y + Inches(0.13),
-          col_a - Inches(0.24), Inches(0.22), "Итого по смете", size=9,
+          col_a - Inches(0.24), Inches(0.22), "Итого на 6 месяцев", size=9,
           font=FONT_DISPLAY, color=ACC_INK, bold=True, line_spacing=1.2)
     label(slide, MARGIN + col_a, total_y + Inches(0.13), col_b - Inches(0.16),
-          Inches(0.22), "4 500 000 ₸", size=9, font=FONT_DISPLAY, color=ACC_INK,
+          Inches(0.22), "2 200 000 ₸", size=9, font=FONT_DISPLAY, color=ACC_INK,
           bold=True, align=PP_ALIGN.RIGHT, line_spacing=1.2)
 
     frame = box(slide, MARGIN, top, left_w, header_h + row_h * (len(BUDGET) + 1),
@@ -899,16 +885,17 @@ def slide_finance(prs):
     icon = box(slide, right_x + Inches(0.28), top + Inches(0.26), Inches(0.42),
                Inches(0.42), fill=ACC_INK, line=ACC_INK,
                shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.16)
-    shape_label(icon, "₸", size=13, font=FONT_DISPLAY, color=ACC)
+    shape_label(icon, "$", size=13, font=FONT_DISPLAY, color=ACC)
     label(slide, right_x + Inches(0.28), top + Inches(0.86),
           right_w - Inches(0.56), Inches(0.22), "Запрашиваемая сумма", size=7.5,
           font=FONT_MONO, color=ACC_INK, bold=True, caps=True)
     label(slide, right_x + Inches(0.28), top + Inches(1.12),
-          right_w - Inches(0.56), Inches(0.48), "4 500 000 ₸", size=23,
+          right_w - Inches(0.56), Inches(0.48), "$10 000", size=23,
           font=FONT_DISPLAY, color=ACC_INK, bold=True, line_spacing=1.0)
     label(slide, right_x + Inches(0.28), top + Inches(1.62),
           right_w - Inches(0.56), Inches(0.40),
-          "Четыре миллиона пятьсот тысяч тенге на 12 месяцев — вся смета целиком.",
+          "Грант GitHub для стартапов — на AI-модели и вывод лендинга на рынок. "
+          "Это около 5 300 000 ₸: смета покрывается с запасом.",
           size=8.5, color=ACC_INK, line_spacing=1.26)
 
     fund_y = top + Inches(2.34)
@@ -916,12 +903,13 @@ def slide_finance(prs):
     card(slide, right_x, fund_y, right_w, fund_h, fill=SURF2)
     fact_column(slide, right_x + Inches(0.28), fund_y + Inches(0.26),
                 right_w - Inches(0.56), [
-                    ("Собственный вклад.", "Выпущенный продукт, инфраструктура и время "
-                                           "основателя — эквивалент 2 000 000 ₸."),
-                    ("Только вывод на рынок.", "Разработка ядра в смете отсутствует: "
-                                               "средства идут на масштабирование."),
-                    ("Возвратность.", "Выход на выручку — Q3 2026, самоокупаемость "
-                                      "к концу года."),
+                    ("Инвестиции сейчас не привлекаем.", "Призовой фонд PIZZA PITCH — "
+                                                         "150 000 ₸; приз закрывает "
+                                                         "домен и продвижение."),
+                    ("Уже вложено.", "Продукт 2.0, открытый код и подписка на топовые "
+                                     "AI-модели на 6 месяцев — $1 000."),
+                    ("Возвратность.", "WhisperFly Pro — с Q2 2027; себестоимость "
+                                      "распознавания — центы на пользователя."),
                 ], size=8, step=0.62, height=0.80)
     return slide
 
@@ -978,7 +966,7 @@ def slide_team(prs):
         ("Сообщество", "— тестирование на разных конфигурациях, локализация интерфейса, "
                        "обратная связь."),
         ("Планируемые роли", "— продуктовый маркетинг и продажи: найм запланирован "
-                             "на Q2 2026 года."),
+                             "на Q2 2027 года."),
     ], columns_count=3, height=Inches(1.66), item_step=Inches(0.0))
     return slide
 
@@ -1014,8 +1002,8 @@ def slide_closing(prs):
          "Ни подписки, ни локальных моделей, ни закрытых исходников — продукт "
          "можно проверить и собрать самому."),
         ("▲", "Эффект для региона",
-         "1,5 млн человеко-часов в год, бесплатный доступ для образования "
-         "и малого бизнеса, рабочие места в 2026 году."),
+         "0,7 млн человеко-часов в год, бесплатный доступ для образования "
+         "и малого бизнеса, рабочие места в 2027 году."),
     ]
     for i, (glyph, head, body) in enumerate(closing):
         x = xs[i]
