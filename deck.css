@@ -484,6 +484,13 @@ body{
 .nav-btn:hover{background:var(--tp-acc-2)}
 .nav-btn:active{transform:scale(var(--tp-press))}
 .nav-btn:disabled{opacity:.38;cursor:default;transform:none}
+/* Cross-link to the live dashboard: same button, gold so it reads as the other view
+   of the same project rather than a fifth navigation control. */
+a.nav-btn--link{
+  display:inline-flex;align-items:center;text-decoration:none;
+  background:var(--tp-acc-2);
+}
+a.nav-btn--link:hover{background:var(--tp-ink);color:var(--tp-surf)}
 .nav-count{
   font-family:var(--tp-font-mono);font-weight:700;font-size:.9rem;
   letter-spacing:.12em;color:var(--tp-mute);white-space:nowrap;
