@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="varsity" style="--tp-h: 262">
+<html lang="ru" data-theme="apple" style="--tp-h: 211">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WhisperFly — живой дашборд проекта</title>
-<meta name="description" content="WhisperFly в цифрах: интерактивный дашборд проекта — живая демонстрация диктовки, сравнение с конкурентами, калькулятор экономии, прогноз установок, дорожная карта, цели, смета и команда.">
+<meta name="description" content="WhisperFly в цифрах: интерактивный дашборд проекта — живая демонстрация диктовки, скриншоты интерфейса macOS, сравнение с конкурентами, калькулятор экономии, прогноз установок, дорожная карта, цели, смета и команда.">
 <meta property="og:title" content="WhisperFly — живой дашборд">
-<meta property="og:description" content="Данные проекта WhisperFly в реальном времени: экономия человеко-часов, прогноз роста, смета, дорожная карта.">
+<meta property="og:description" content="Данные проекта WhisperFly в реальном времени: интерфейс macOS, экономия человеко-часов, прогноз роста, смета, дорожная карта.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Rubik:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="dashboard.css">
 <script>document.documentElement.classList.add('js');</script>
@@ -137,10 +137,11 @@
   <div class="wrap topbar-in">
     <a class="tb-brand" href="#top">
       <img src="assets/appicon.png" alt="" width="60" height="60">
-      WHISPER<span class="fly">FLY</span>
+      Whisper<span class="fly">Fly</span>
     </a>
     <span class="tb-live"><i class="pulse-dot"></i><span id="liveClock">00:00:00</span></span>
     <nav class="tb-links" aria-label="Разделы дашборда">
+      <a href="#screenshots">Интерфейс</a>
       <a href="#pulse">Пульс</a>
       <a href="#advantage">Сравнение</a>
       <a href="#impact">КПД</a>
@@ -165,15 +166,15 @@
         <span class="kick kick--gold">PIZZA PITCH · SKO Hub</span>
       </div>
       <img class="hero-logo" src="assets/appicon.png" alt="Иконка WhisperFly" width="512" height="512" data-rv style="--i:1">
-      <h1 class="hero-title" data-rv style="--i:2;--rv:tp-up">WHISPER<span class="fly">FLY</span></h1>
+      <h1 class="hero-title" data-rv style="--i:2;--rv:tp-up">Whisper<span class="fly">Fly</span></h1>
       <p class="hero-lede" data-rv style="--i:3;--rv:tp-up">
         Бесплатная диктовка нажатием клавиши для macOS. Ниже — та же презентация,
-        но не слайдами, а <b>живыми данными</b>: цифры считаются, графики рисуются,
-        модель экономии пересчитывается на ваших допущениях прямо в браузере.
+        но в <b>живых данных и реальных скриншотах интерфейса</b>: цифры считаются,
+        графики строятся, а модель экономии пересчитывается прямо в браузере.
       </p>
       <div class="hero-ctas" data-rv style="--i:4;--rv:tp-up">
-        <a class="btn" href="#impact">
-          <svg><use href="#i-chart"/></svg>Посчитать эффект
+        <a class="btn" href="#screenshots">
+          <svg><use href="#i-grid"/></svg>Скриншоты macOS
         </a>
         <a class="btn btn--ghost" href="index.html">
           <svg><use href="#i-list"/></svg>Версия слайдами
@@ -205,6 +206,66 @@
     </div>
   </div>
 </section>
+
+<!-- ═══ Интерфейс продукта · Скриншоты macOS ══════════════════════════════ -->
+<section class="panel" id="screenshots">
+  <div class="wrap">
+    <div class="sec-head" data-rv>
+      <span class="kick">Нативное приложение macOS</span>
+      <h2 class="sec-title">Интерфейс <span class="hl">WhisperFly 2.0</span> в деталях</h2>
+      <p class="sec-sub">
+        Лаконичное меню в строке состояния macOS, мгновенное переключение между микрофоном
+        и системным звуком, облачный движок Groq Whisper (Free) с авто-очисткой текста
+        и полная цифровая подпись Apple Developer.
+      </p>
+    </div>
+
+    <div class="shots-bento">
+      <article class="shot-card" data-rv style="--i:0">
+        <div class="shot-card-top">
+          <span class="shot-badge shot-badge--green">● Ready · Строка меню</span>
+          <h3>Мгновенная готовность</h3>
+          <p>Доступ из меню macOS в один клик или по глобальному хоткею. Выбор источника (Microphone / System Audio), транскрипция файлов, история и встроенное автообновление с казахской локализацией.</p>
+        </div>
+        <div class="shot-img-wrap">
+          <img src="assets/screenshot-ready.png" alt="Скриншот меню WhisperFly в режиме Ready" loading="lazy">
+        </div>
+      </article>
+
+      <article class="shot-card" data-rv style="--i:1">
+        <div class="shot-card-top">
+          <span class="shot-badge shot-badge--rec">● Recording… · В эфире</span>
+          <h3>Запись и умная очистка</h3>
+          <p>Живой индикатор уровня сигнала, распознавание через бесплатный облачный бэкенд <b>Groq Whisper (Free)</b> и режим <b>Rewrite: Cleanup</b>, убирающий слова-паразиты и оговорки.</p>
+        </div>
+        <div class="shot-img-wrap">
+          <img src="assets/screenshot-recording.png" alt="Скриншот меню WhisperFly во время записи" loading="lazy">
+        </div>
+      </article>
+
+      <article class="shot-card" data-rv style="--i:2">
+        <div class="shot-card-top">
+          <span class="shot-badge">Permissions · Code Signature</span>
+          <h3>Нативные права и подпись</h3>
+          <p>Прозрачное управление доступом к микрофону, <b>ScreenCaptureKit</b> (системный звук) и <b>Accessibility API</b> (вставка к курсору). Приложение подписано сертификатом <code>SR9LWJ7XG9</code> с Hardened Runtime.</p>
+        </div>
+        <div class="shot-img-wrap">
+          <img src="assets/screenshot-permissions.png" alt="Скриншот окна настроек Permissions и цифровой подписи WhisperFly" loading="lazy">
+        </div>
+      </article>
+    </div>
+
+    <div class="shot-pill-showcase" data-rv style="--i:3">
+      <div class="shot-pill-info">
+        <span class="col-head">Плавающий индикатор состояния</span>
+        <h3>Капсула «Listening…» прямо рядом с текстовым курсором</h3>
+        <p>Благодаря macOS Accessibility API вам не нужно смотреть в строку меню: аккуратная тёмная капсула появляется возле каретки ввода в любом приложении — от заметок и браузера до терминала и IDE.</p>
+      </div>
+      <img class="shot-pill-preview" src="assets/screenshot-listening.png" alt="Плавающий индикатор Listening... рядом с курсором" loading="lazy">
+    </div>
+  </div>
+</section>
+
 <!-- ═══ Пульс проекта · KPI ═══════════════════════════════════════════════ -->
 <section class="panel" id="pulse">
   <div class="wrap">
@@ -444,6 +505,7 @@
     </div>
   </div>
 </section>
+
 <!-- ═══ КПД · калькулятор ════════════════════════════════════════════════ -->
 <section class="panel" id="impact">
   <div class="wrap">
@@ -922,7 +984,7 @@
 <footer class="foot">
   <div class="wrap foot-grid">
     <div>
-      <div class="foot-brand">WHISPER<span class="fly">FLY</span></div>
+      <div class="foot-brand">Whisper<span class="fly">Fly</span></div>
       <p class="foot-lede">
         Голос быстрее клавиатуры. Мы сделали это бесплатным. WhisperFly уже работает
         и уже бесплатен — осталось превратить продукт в устойчивую платформу.
@@ -941,7 +1003,7 @@
     </dl>
   </div>
   <div class="wrap foot-base">
-    <span>Слайды и PDF не тронуты — дашборд отдельная страница поверх той же презентации.</span>
+    <span>Слайды и PDF синхронизированы — дашборд дополняет презентацию живыми расчётами и скриншотами.</span>
     <a href="#top">Наверх ↑</a>
   </div>
 </footer>

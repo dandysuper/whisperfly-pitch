@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="varsity" style="--tp-h: 262">
+<html lang="ru" data-theme="apple" style="--tp-h: 211">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Rubik:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="deck.css">
 <script>document.documentElement.classList.add('js');</script>
@@ -136,7 +136,7 @@
           <img src="assets/appicon.png" alt="Иконка приложения WhisperFly" width="512" height="512">
         </div>
 
-        <div class="brand anim" style="--i:1;--rv:tp-up">WHISPER<span class="fly">FLY</span></div>
+        <div class="brand anim" style="--i:1;--rv:tp-up">Whisper<span class="fly">Fly</span></div>
 
         <p class="tagline anim" style="--i:2;--rv:tp-up">
           Бесплатная диктовка нажатием клавиши для macOS. Голос&nbsp;— в текст: мгновенно,
@@ -161,7 +161,7 @@
         <div class="title-band anim" style="--i:4;--rv:tp-up">
           <span class="badge badge--fill">PIZZA PITCH · SKO Hub</span>
           <span class="badge">16 октября 2026 · Петропавловск</span>
-          <span class="badge">Готовый MVP</span>
+          <span class="badge">Готовый MVP 2.0</span>
           <span class="badge">macOS 14+</span>
           <span class="badge">11 языков</span>
           <span class="badge">0 ₸</span>
@@ -169,35 +169,32 @@
       </div>
     </section>
 
-    <!-- ═══ 02 · Введение ════════════════════════════════════════════════ -->
+    <!-- ═══ 02 · Введение (+ живые скриншоты macOS) ═════════════════════ -->
     <section class="slide" data-num="02/09" aria-label="Введение">
       <div class="slide-inner">
         <div class="head">
-          <span class="kicker anim" style="--i:0">Введение</span>
+          <span class="kicker anim" style="--i:0">Введение · Продукт в работе</span>
           <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
             Что такое <span class="hl">WhisperFly</span>
           </h2>
           <p class="slide-sub anim" style="--i:2;--rv:tp-up">
-            WhisperFly — приложение для macOS, которое превращает речь в текст в любом
-            приложении по одному нажатию <b>⌘⇧Space</b>. Оно пишет и микрофон, и системный
-            звук, распознаёт речь в облаке и вставляет готовый текст прямо туда, где стоит
-            курсор. Сегодня это работающий продукт версии 2.0 с открытым исходным кодом —
-            и он полностью бесплатен.
+            WhisperFly — нативное приложение для macOS, которое превращает речь в текст в любом
+            приложении по нажатию <b>⌘⇧Space</b>. Записывает микрофон и системный звук,
+            распознаёт речь через Groq Whisper и вставляет чистый текст прямо к курсору.
           </p>
         </div>
 
-        <div class="grid g-side">
+        <div class="grid g-intro">
           <article class="card card--navy anim" style="--i:3;--rv:tp-up">
             <div class="card-ico"><svg><use href="#i-target"/></svg></div>
             <h3 class="card-t">Главная цель</h3>
             <p class="goal">
               Убрать разрыв между скоростью мысли и скоростью набора текста — сделать
-              голосовой ввод <em>бесплатным, мгновенным и доступным каждому</em>, кто
-              работает за Mac.
+              голосовой ввод <em>бесплатным, мгновенным и доступным каждому</em> на Mac.
             </p>
             <div class="chips">
-              <span class="chip">Любое приложение macOS</span>
-              <span class="chip">Без локальных моделей</span>
+              <span class="chip">Любое приложение</span>
+              <span class="chip">Groq Whisper</span>
               <span class="chip chip--gold">0 ₸</span>
             </div>
           </article>
@@ -207,112 +204,138 @@
             <ol class="punch anim" style="--i:5;--rv:tp-up">
               <li>
                 <span class="n">1</span>
-                <span><strong>Сделать ввод мгновенным.</strong> Один хоткей, вставка текста
-                в активное поле, отклик — секунды.</span>
+                <span><strong>Мгновенный ввод.</strong> Один хоткей, авто-вставка текста
+                в активное поле, отклик — доли секунды.</span>
               </li>
               <li>
                 <span class="n">2</span>
-                <span><strong>Охватить все сценарии звука.</strong> Микрофон, системный звук
-                и готовые аудио- и видеофайлы.</span>
+                <span><strong>Все сценарии звука.</strong> Микрофон, системный звук
+                macOS и готовые аудио/видеофайлы.</span>
               </li>
               <li>
                 <span class="n">3</span>
-                <span><strong>Снять языковой барьер.</strong> Интерфейс на 11 языках,
-                включая казахский; распознавание — более 100 языков.</span>
+                <span><strong>Без языкового барьера.</strong> Интерфейс на 11 языках
+                (включая казахский), распознавание 100+ языков.</span>
               </li>
               <li>
                 <span class="n">4</span>
-                <span><strong>Вывести на рынок.</strong> Лендинг, первые 1 000 пользователей
+                <span><strong>Выход на рынок.</strong> Лендинг, первые 1 000 установок
                 и грант GitHub на AI-модели.</span>
               </li>
             </ol>
           </div>
+
+          <aside class="shot-showcase anim" style="--i:6;--rv:tp-up" aria-label="Скриншоты интерфейса WhisperFly">
+            <div class="shot-pair">
+              <figure class="shot-frame">
+                <img src="assets/screenshot-ready.png" alt="Меню WhisperFly в режиме ожидания Ready">
+                <figcaption>Меню · Готов к записи</figcaption>
+              </figure>
+              <figure class="shot-frame">
+                <img src="assets/screenshot-recording.png" alt="Меню WhisperFly во время активной записи">
+                <figcaption>Запись · Groq Whisper</figcaption>
+              </figure>
+            </div>
+            <div class="shot-pill-bar">
+              <img src="assets/screenshot-listening.png" alt="Плавающая капсула Listening рядом с курсором">
+              <span>Плавающий индикатор <strong>Listening…</strong> прямо у текстового курсора</span>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- ═══ 03 · Уникальность ═══════════════════════════════════════════ -->
+    <!-- ═══ 03 · Уникальность (+ скриншот системных разрешений) ═════════ -->
     <section class="slide" data-num="03/09" aria-label="Уникальность">
       <div class="slide-inner">
         <div class="head">
           <span class="kicker anim" style="--i:0">Уникальность</span>
           <h2 class="slide-title anim" style="--i:1;--rv:tp-up">
-            Бесплатно и <span class="hl">открыто</span>
+            Бесплатно, нативно и <span class="hl">открыто</span>
           </h2>
         </div>
 
-        <table class="tbl anim" style="--i:2;--rv:tp-up">
-          <thead>
-            <tr>
-              <th>Продукт</th>
-              <th>Цена</th>
-              <th>Системный звук</th>
-              <th>Файлы</th>
-              <th>Открытый код</th>
-              <th>Казахский интерфейс</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col-us">WhisperFly</td>
-              <td class="col-us">0 ₸</td>
-              <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
-              <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
-              <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
-              <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
-            </tr>
-            <tr>
-              <td>Superwhisper</td>
-              <td>от $8,99/мес</td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-            </tr>
-            <tr>
-              <td>MacWhisper</td>
-              <td>от €59</td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-            </tr>
-            <tr>
-              <td>Wispr Flow</td>
-              <td>от $12/мес</td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-            </tr>
-            <tr>
-              <td>Apple «Диктовка»</td>
-              <td>0 ₸</td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-              <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="grid g-uniq">
+          <table class="tbl anim" style="--i:2;--rv:tp-up">
+            <thead>
+              <tr>
+                <th>Продукт</th>
+                <th>Цена</th>
+                <th>Системный звук</th>
+                <th>Файлы</th>
+                <th>Открытый код</th>
+                <th>Казахский UI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-us">WhisperFly</td>
+                <td class="col-us">0 ₸</td>
+                <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+                <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+                <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+                <td class="col-us"><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+              </tr>
+              <tr>
+                <td>Superwhisper</td>
+                <td>от $8,99/мес</td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              </tr>
+              <tr>
+                <td>MacWhisper</td>
+                <td>от €59</td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--yes"><use href="#i-check"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              </tr>
+              <tr>
+                <td>Wispr Flow</td>
+                <td>от $12/мес</td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              </tr>
+              <tr>
+                <td>Apple «Диктовка»</td>
+                <td>0 ₸</td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+                <td><svg class="mk mk--no"><use href="#i-x"/></svg></td>
+              </tr>
+            </tbody>
+          </table>
 
-        <article class="card card--sunken strip anim" style="--i:3;--rv:tp-up">
+          <aside class="shot-card-perm anim" style="--i:3;--rv:tp-up" aria-label="Окно разрешений и цифровой подписи macOS">
+            <img src="assets/screenshot-permissions.png" alt="Окно настроек Permissions в WhisperFly с подписью Apple Developer">
+            <div class="shot-cap">
+              <strong>Нативная интеграция macOS:</strong> ScreenCaptureKit, Accessibility API и цифровая подпись <code>SR9LWJ7XG9</code>
+            </div>
+          </aside>
+        </div>
+
+        <article class="card card--sunken strip anim" style="--i:4;--rv:tp-up">
           <span class="col-head">В чём инновационность</span>
           <ul class="facts facts--3">
             <li>
               <span class="tick"><svg><use href="#i-cloud"/></svg></span>
               <span><strong>Облачный ASR вместо локальной модели.</strong> Приложение весит
-              мегабайты, а не гигабайты.</span>
+              мегабайты, а не гигабайты, и не нагружает процессор.</span>
             </li>
             <li>
               <span class="tick"><svg><use href="#i-layers"/></svg></span>
-              <span><strong>Вставка через Accessibility API:</strong> текст появляется
-              прямо там, где стоит курсор, без копирования вручную.</span>
+              <span><strong>Вставка через Accessibility API:</strong> текст печатается
+              прямо там, где стоит курсор, и очищается режимом Rewrite Cleanup.</span>
             </li>
             <li>
               <span class="tick"><svg><use href="#i-speaker"/></svg></span>
-              <span><strong>Системный звук через ScreenCaptureKit:</strong> созвоны и видео
-              транскрибируются прямо с дорожки Mac.</span>
+              <span><strong>Системный звук через ScreenCaptureKit:</strong> созвоны и лекции
+              транскрибируются напрямую с аудиодорожки Mac.</span>
             </li>
           </ul>
         </article>
